@@ -1,26 +1,32 @@
 const { getDb } = require('../configs/BD');
-const { ObjectId } = require('mongodb');
+
 
 
 
 module.exports = {
-    findToArray:  () => { 
-        let db =  getDb(); 
-        let char =  db.collection('VEB_2').find().toArray(); 
-        return char; 
-    },
-    
-
-    findOne:  (id) => {
-        let db =  getDb();
-        let char =  db.collection('VEB_2').findOne({_id: new ObjectId(id)});
-        return char;
-      },
-      
-    insertOne: (query) => {
+    findToArray: (trajectory) => {
         let db = getDb();
-        let char = db.collection('VEB_2').insertOne(query);
+        let char = db.collection(trajectory).find().toArray();
         return char;
+    },
+
+
+    findOne: (id, trajectory) => {
+        let db = getDb();
+        let char = db.collection(trajectory).findOne(id);
+        return char;
+    },
+
+    insertOne: (query, trajectory) => {
+        let db = getDb();
+        let char = db.collection(trajectory).insertOne(query);
+        return char;
+    },
+
+    deleteOne: (query, trajectory) => { 
+        let db = getDb(); 
+        let char = db.collection(trajectory).deleteOne(query); 
+        return char; 
     }
 }
 

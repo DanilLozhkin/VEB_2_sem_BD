@@ -5,7 +5,7 @@ let dbConnection;
 
 module.exports = {
     connectToDB: (cb) => {
-        MongoClient.connect(`mongodb://127.0.0.1:27017/VEB_2`)
+        MongoClient.connect(`mongodb://127.0.0.1:27017/VEB_2_modell`)
             .then((client) => {
                 console.log('Connect to BD');
                 dbConnection = client.db();
