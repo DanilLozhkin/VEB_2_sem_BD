@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./awsm.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>GET запрос: "/"</li>
+        <li>ответ: "Hi"</li>
+    </ul>
+    <ul>
+        <li>GET запрос: "/stats"</li>
+        <li>
+            <table>
+                <tr>
+                    <th>user</th>
+                    <th>count</th>
+                </tr>
+            </table>
+        </li>
+    </ul>
+    <ul>
+        <li>POST запрос: "/"</li>
+        <li>ответ: "400 Bad Request"</li>
+    </ul>
+    <ul>
+        <li>POST запрос: "/comments"</li>
+        <li>ответ: "{"dasda":"ccc","ssd":"dda"}"</li>
+    </ul>
+    <ul>
+        <li>GET запрос: "/api/users?apiKey=myApiKey&id=123"</li>
+        <li>ответ: "{"user":"123"}"</li>
+    </ul>
+    <ul>
+        <li>GET запрос: "/api/users?apiKey=11111111&id=123"</li>
+        <li>ответ: "{"message":"400 ошибка аворизации"}"</li>
+    </ul>
+</body>
+
+</html>
