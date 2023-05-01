@@ -5,6 +5,7 @@
     letter-spacing: 0.2px;
     font-family: 'Montserrat', sans-serif;
     --primary-color: #000000;
+    --quinary-color: #ff8800;
     box-sizing: border-box;
 }
 
@@ -17,8 +18,8 @@
 fieldset {
     border-color: var(--quinary-color);
     border-radius: 10px;
-    border-width: 4px;
-    width: 400px;
+    border-width: 2px;
+    width: 427px;
 }
 
 p{
@@ -30,6 +31,7 @@ p{
 
 canvas{
     position: absolute;
+    border-radius: 8px;
 }
 
 .butt{

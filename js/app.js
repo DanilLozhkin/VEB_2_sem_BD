@@ -20,6 +20,14 @@ app.use((req, res, next) => {
     console.log("HOST:", req.socket.address().address, ":", req.socket.address().port);
     next();
 });
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+    next(err);
+});
+
+
 app.use(morgan('dev'));
 
 app.use('/', router);
