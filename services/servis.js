@@ -6,7 +6,7 @@ const { getDb } = require('../configs/BD');
 module.exports = {
     findToArray: (trajectory) => {
         let db = getDb();
-        let char = db.collection(trajectory).find().toArray();
+        let char = db.collection(trajectory).find({}, { projection: { _id: 1, name_Model: 1 } }).toArray();
         return char;
     },
 

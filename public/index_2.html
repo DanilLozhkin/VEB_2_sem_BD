@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%
+        }
+    </style>
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="./style_2.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id='form' method="post">
+
+        <fieldset>
+            <legend>Создание модели</legend>
+                <p>name_Model:</p>
+                <label for="name_Model"><input type="text"  name="name_Model" value="name" id="p2" required></label>
+
+                <p>type:</p>
+                <select name="type" id="p3">
+                    <option value="BoxGeometry">BoxGeometry</option>
+                    <option value="PlaneGeometry">PlaneGeometry</option>
+                    <option value="BufferGeometry">BufferGeometry</option>
+                    <option value="SphereGeometry">SphereGeometry</option>
+                    <option value="ConeBufferGeometry">ConeBufferGeometry</option>
+                    <option value="TorusKnotGeometry">TorusKnotGeometry</option>
+                </select>
+
+                <P>value, vertex:</P>
+                <label><input type="text"  name="vertex" value="23, 324, 543, 4634 " id="p4"></label>
+
+                <P>value, collor:</P>
+                <label><input type="color"  name="collor" value="#a55151" id="p5"></label>
+
+                <p>description:</p>
+                <label><input type="text"  name="description" value="sdfsdfdsdfsddfe" id="p6"></label>
+                
+            <button class="butt" id="but">отобразить</button>
+            <button type="submit" id="submit">отправить</button>
+        </fieldset>
+    </form>
+
+    <script src="./three.js"></script>
+    <script src="./main_7.js"></script>
+</body>
+
+</html>
