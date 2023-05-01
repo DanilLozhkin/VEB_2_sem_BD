@@ -3,9 +3,9 @@
 
 function TREE_JS(typ, vertex, Color) {
     let scene = new THREE.Scene();
-    let camera = new THREE.PerspectiveCamera(75, (window.innerWidth / 6) / (window.innerHeight / 3), 0.1, 1000);
+    let camera = new THREE.PerspectiveCamera(75, (window.innerWidth / 3) / (window.innerHeight / 2), 0.1, 1000);
     let renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth / 6, window.innerHeight / 3);
+    renderer.setSize(window.innerWidth / 3, window.innerHeight / 2);
     document.body.appendChild(renderer.domElement);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;

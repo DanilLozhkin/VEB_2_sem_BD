@@ -18,7 +18,7 @@ fieldset {
     border-color: var(--quinary-color);
     border-radius: 10px;
     border-width: 4px;
-    width: 50px;
+    width: 400px;
 }
 
 p{
@@ -38,4 +38,13 @@ canvas{
     background-color: #ff8800;
     border-radius: 4px;
     width: 120px;
+}
+
+.p11{
+    font-size: 0.9rem;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
 }

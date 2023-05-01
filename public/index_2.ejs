@@ -1,13 +1,11 @@
+
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <style>
         body {
             margin: 0;
@@ -24,20 +22,38 @@
 </head>
 
 <body>
+    <form id='form' action="../models">
 
-    <div class="div_1">
-        <p id="p1">name: <%= name %></p>
-        <p id="p2">name_Model: <%= name_Model %></p>
-        <p id="p3">type: <%= type %></p>
-        <p id="p4">value, vertex: <%= vertex %> </p>
-        <p id="p5">value, collor: <%= collor %> </p>
-        <p id="p6">description: <%= description %></p>
-        <p id="p7">data_creat:  <%= data_creat %></p>
-        <p id="p8">data_update:  <%= data_update %></p>
-    </div>
-    <button class="butt" id="but">отобразить</button>
+        <fieldset>
+            <legend>Создание модели</legend>
+            <h1>name:</h1>
+            <label><input type="text" name="name" value="<%= name %>" id="p1" readonly></label>
+
+            <p>name_Model:</p>
+            <label><input type="text" name="name_Model" value="<%= name_Model %>" id="p2" readonly></label>
+
+            <p>type:</p>
+            <label><input type="text" name="typ" value="<%= type %>" id="p3" readonly></label>
+
+            <P>value, vertex:</P>
+            <label><input type="text" name="vertex" value="<%= vertex %>" id="p4" readonly></label>
+
+            <P>value, color:</P>
+            <label><input type="color" name="color" value="<%= collor %>" id="p5" readonly></label>
+
+            <p>description:</p>
+            <label><input type="text" name="description" value="<%= description %>" id="p6" readonly></label>
+            
+            <p class="p11">data_creat: <%= data_creat %></p>
+
+            <p class="p11">data_update: <%= data_update %></p>
+
+            <button class="butt" id="but">отобразить</button>
+
+        </fieldset>
+    </form>
     <script src="./three.js"></script>
-    <script src="./quer_2.js"></script>
+    <script src="./quer_1.js"></script>
     <script src="./main_7.js"></script>
 </body>
 
