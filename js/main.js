@@ -31,32 +31,6 @@ router.get('/models/quer_1.js', (req, res) => {
     res.sendFile(filePath);
 });
 
-//---------------------------------------------------------------------------------------------------
-
-router.get('/models/html/normalize.css', (req, res) => {
-    const filePath = path.join(__dirname, '../public/normalize.css');
-    res.sendFile(filePath);
-});
-
-router.get('/models/html/style_2.css', (req, res) => {
-    const filePath = path.join(__dirname, '../public/style_2.css');
-    res.sendFile(filePath);
-});
-
-router.get('/models/html/three.js', (req, res) => {
-    const filePath = path.join(__dirname, '../public/three.js');
-    res.sendFile(filePath);
-});
-
-router.get('/models/html/main_7.js', (req, res) => {
-    const filePath = path.join(__dirname, '../public/main_7.js');
-    res.sendFile(filePath);
-});
-
-router.get('/models/html/quer_1.js', (req, res) => {
-    const filePath = path.join(__dirname, '../public/quer_1.js');
-    res.sendFile(filePath);
-});
 
 
 

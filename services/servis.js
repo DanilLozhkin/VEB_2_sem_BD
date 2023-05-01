@@ -33,7 +33,14 @@ module.exports = {
         let db = getDb(); 
         let char = db.collection(trajectory).deleteMany(query); 
         return char; 
+    },
+
+    updateOne:(filter,update, trajectory ) => {
+        let db = getDb(); 
+        let char = db.collection(trajectory).updateOne(filter, update); 
+        return char; 
     }
+
 }
 
 

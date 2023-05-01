@@ -11,35 +11,48 @@
 
 <body>
     <ul>
-        <li>GET запрос: "/"</li>
-        <li>ответ: "Hi"</li>
+        <li>GET запрос: "/models"</li>
+        <li>ответ: "[{"_id":"644ed8096ce1d8ef9867ff89","name_Model":"erorerrrr"}]"</li>
     </ul>
     <ul>
-        <li>GET запрос: "/stats"</li>
-        <li>
-            <table>
-                <tr>
-                    <th>user</th>
-                    <th>count</th>
-                </tr>
-            </table>
-        </li>
+        <li>POST запрос: "/api-keys"</li>
+        <li>API key for danil2 is 029f1b5b</li>
     </ul>
     <ul>
-        <li>POST запрос: "/"</li>
-        <li>ответ: "400 Bad Request"</li>
+        <li>delete запрос: "/?apiKey=b9b1ad13"</li>
+        <li>fin (удаляет пользователя и все его модели)</li>
     </ul>
     <ul>
-        <li>POST запрос: "/comments"</li>
-        <li>ответ: "{"dasda":"ccc","ssd":"dda"}"</li>
+        <li>delete запрос: "/?apiKey=55555"</li>
+        <li>400 ошибка аворизации</li>
     </ul>
     <ul>
-        <li>GET запрос: "/api/users?apiKey=myApiKey&id=123"</li>
-        <li>ответ: "{"user":"123"}"</li>
+        <li>GET запрос: "/models/html?apiKey=b9b1ad13"</li>
+        <li>ejs форма для POST запроса</li>
     </ul>
     <ul>
-        <li>GET запрос: "/api/users?apiKey=11111111&id=123"</li>
-        <li>ответ: "{"message":"400 ошибка аворизации"}"</li>
+        <li>GET запрос: "/models/html?apiKey=444444444"</li>
+        <li>400 ошибка аворизации</li>
+    </ul>
+    <ul>
+        <li>GET запрос: "/models/:id"</li>
+        <li>ejs форма которая отображает созданную модель по id</li>
+    </ul>
+    <ul>
+        <li>GET запрос: "/models/:id" (:id неправельный)</li>
+        <li>id нет</li>
+    </ul>
+    <ul>
+        <li>PUT запрос: "/models/:id?apiKey=444444444" </li>
+        <li>fin обновилось БД</li>
+    </ul>
+    <ul>
+        <li>PUT запрос: "/models/:id?apiKey=4арврвва44" </li>
+        <li>400 ошибка аворизации</li>
+    </ul>
+    <ul>
+        <li>PUT запрос: "/models/:id?apiKey=444444444"  (:id неправельный)</li>
+        <li>id нет</li>
     </ul>
 </body>
 

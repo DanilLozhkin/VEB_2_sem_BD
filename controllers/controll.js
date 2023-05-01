@@ -17,7 +17,7 @@ const trajectory_api = 'API-key', trajectory_modell = 'modell';
 
 router2.use(express.json())
 //const { reqover }= require('../public/main_7');
-const { findToArray, findOne, insertOne, deleteOne, deleteMany } = require('../services/servis');
+const { findToArray, findOne, insertOne, deleteOne, deleteMany, updateOne } = require('../services/servis');
 const { request } = require("http");
 router2.use(express.static('public'));
 
@@ -49,7 +49,7 @@ router2.get('/models/html', KEY, async (req, res) => {
     let description = "что-то";
     let data_creat = Date();
     let data_update = data_creat;
-    
+
     const filePath = __dirname + '/../public/index_3.ejs';
     fs.readFile(filePath, 'utf8', (err, template) => {
         const rendered = ejs.render(template, {
@@ -59,15 +59,11 @@ router2.get('/models/html', KEY, async (req, res) => {
         res.send(rendered);
     });
 });
-
-router2.get('/models/html/:id', KEY, async (req, res) => {
-    const key = req.query.apiKey;
-    let name = await findOne({ key: key }, trajectory_api);
-    name = name.name;
+router2.get('/models/:id', async (req, res) => {
     const id = req.params.id;
     if (ObjectId.isValid(id)) {
         const data = await findOne({ _id: new ObjectId(id) }, trajectory_modell);
-
+        let name = data.name;
         let name_Model = data.name_Model;
         let type = data.type;
         let vertex = data.value.vertex;
@@ -76,31 +72,62 @@ router2.get('/models/html/:id', KEY, async (req, res) => {
         let data_creat = data.data_creat;
         let data_update = data.data_update;
 
-        const filePath = __dirname + '/../public/index_3_2.ejs';
+        const filePath = __dirname + '/../public/index_2.ejs';
         fs.readFile(filePath, 'utf8', (err, template) => {
             const rendered = ejs.render(template, {
                 name, name_Model, type, vertex,
-                collor, description, data_creat, data_update, key
+                collor, description, data_creat, data_update
             });
             res.send(rendered);
         });
-        //res.sendFile('index_2.html');
     } else {
-        res.status(404).send("404 ошибка");
-
+        res.status(404).send("id нет");
     }
 });
 
 
-router2.put('/models/:id', ur, async (req, res) => {
 
-    //const { name, name_Model, type, vertex, color, description, key ,data_creat} = req.body;
+router2.put('/models/:id', KEY, async (req, res) => {
 
-    //let data_update = Date();
+    const id = req.params.id;
+    const key = req.query.apiKey;
+    if (ObjectId.isValid(id)) {
+        const key_1 = await findOne({ _id: new ObjectId(id) }, trajectory_modell);
+        if (key == key_1.key) {
 
-    //await insertOne({ name, name_Model, type, value: { vertex, color }, description, data_creat, data_update, key }, trajectory_modell);
-    res.send('Data saved successfully');
+            const { name_Model, type, vertex, color, description } = req.body;
+            console.log(name_Model, type, vertex, color);
+
+            const updateFields = {};
+            if (name_Model) {
+                updateFields.name_Model = name_Model;
+            }
+            if (type) {
+                updateFields.type = type;
+            }
+            if (vertex) {
+                updateFields.value = { ...updateFields.value, vertex };
+            }
+            if (color) {
+                updateFields.value = { ...updateFields.value, color };
+            }
+            if (description) {
+                updateFields.description = description;
+            }
+            updateFields.data_update = Date();
+
+            await updateOne({ _id: new ObjectId(id) }, { $set: updateFields }, trajectory_modell);
+
+            res.send('fin обновилось БД');
+        } else {
+            return res.status(401).json({ message: '400 ошибка аворизации' });
+        }
+    }
+    else {
+        res.status(404).send("id нет");
+    }
 });
+
 
 router2.post('/models', ur, async (req, res) => {
 
