@@ -106,10 +106,10 @@ router2.put('/models/:id', KEY, async (req, res) => {
                 updateFields.type = type;
             }
             if (vertex) {
-                await updateOne({ _id: new ObjectId(id) }, { $set: {"value.vertex": vertex}}, trajectory_modell);
+                await updateOne({ _id: new ObjectId(id) }, { $set: { "value.vertex": vertex } }, trajectory_modell);
             }
             if (color) {
-                await updateOne({ _id: new ObjectId(id) }, { $set: {"value.color": color}}, trajectory_modell);
+                await updateOne({ _id: new ObjectId(id) }, { $set: { "value.color": color } }, trajectory_modell);
             }
             if (description) {
                 updateFields.description = description;
@@ -137,7 +137,7 @@ router2.post('/models', ur, async (req, res) => {
     let data_update = data_creat;
 
     await insertOne({ name, name_Model, type, value: { vertex, color }, description, data_creat, data_update, key }, trajectory_modell);
-    res.send('Data saved successfully');
+    res.send('бд сохранилось');
 });
 
 router2.post('/api-keys', (req, res) => {
@@ -159,6 +159,24 @@ router2.delete("/", KEY, async (req, res) => {
     res.end("fin");
 
 });
+
+router2.delete("/models/:id", KEY, async (req, res) => {
+    const id = req.params.id;
+    const key = req.query.apiKey;
+    if (ObjectId.isValid(id)) {
+        const key_1 = await findOne({ _id: new ObjectId(id) }, trajectory_modell);
+        if (key == key_1.key) {
+            await deleteOne({ _id: new ObjectId(id) }, trajectory_modell);
+            res.end("fin");
+        } else {
+            return res.status(401).json({ message: '400 ошибка аворизации' });
+        }
+    }
+    else {
+        res.status(404).send("id нет");
+    }
+});
+
 
 
 module.exports = router2;

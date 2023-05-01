@@ -19,11 +19,11 @@
         <li>API key for danil2 is 029f1b5b</li>
     </ul>
     <ul>
-        <li>delete запрос: "/?apiKey=b9b1ad13"</li>
+        <li>DELETE запрос: "/?apiKey=b9b1ad13"</li>
         <li>fin (удаляет пользователя и все его модели)</li>
     </ul>
     <ul>
-        <li>delete запрос: "/?apiKey=55555"</li>
+        <li>DELETE запрос: "/?apiKey=55555"</li>
         <li>400 ошибка аворизации</li>
     </ul>
     <ul>
@@ -53,6 +53,18 @@
     <ul>
         <li>PUT запрос: "/models/:id?apiKey=444444444"  (:id неправельный)</li>
         <li>id нет</li>
+    </ul>
+    <ul>
+        <li>DELETE запрос: "/models/:id?apiKey=444444444" </li>
+        <li>fin (модель удаленна)</li>
+    </ul>
+    <ul>
+        <li>DELETE запрос: "/models/:id?apiKey=444444444"  (:id неправельный)</li>
+        <li>id нет</li>
+    </ul>
+    <ul>
+        <li>DELETE запрос: "/models/:id?apiKey=4арврвва44" </li>
+        <li>400 ошибка аворизации</li>
     </ul>
 </body>
 
