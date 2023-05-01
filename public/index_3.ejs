@@ -21,15 +21,18 @@
 </head>
 
 <body>
-    <form id='form' method="post">
+    <form id='form' method="post" action="../models">
 
         <fieldset>
             <legend>Создание модели</legend>
+                <h1>name:</h1>
+                <label><input type="text" name="name" value="<%= name %>" id="p1" readonly></label>
+
                 <p>name_Model:</p>
-                <label for="name_Model"><input type="text"  name="name_Model" value="name" id="p2" required></label>
+                <label><input type="text"  name="name_Model" value="name" id="p2"></label>
 
                 <p>type:</p>
-                <select name="type" id="p3">
+                <select for="type" name="type" id="p3">
                     <option value="BoxGeometry">BoxGeometry</option>
                     <option value="PlaneGeometry">PlaneGeometry</option>
                     <option value="BufferGeometry">BufferGeometry</option>
@@ -41,8 +44,8 @@
                 <P>value, vertex:</P>
                 <label><input type="text"  name="vertex" value="23, 324, 543, 4634 " id="p4"></label>
 
-                <P>value, collor:</P>
-                <label><input type="color"  name="collor" value="#a55151" id="p5"></label>
+                <P>value, color:</P>
+                <label><input type="color"  name="color" value="#a55151" id="p5"></label>
 
                 <p>description:</p>
                 <label><input type="text"  name="description" value="sdfsdfdsdfsddfe" id="p6"></label>
@@ -54,6 +57,7 @@
 
     <script src="./three.js"></script>
     <script src="./main_7.js"></script>
+    <script src="./quer_1.js"></script>
 </body>
 
 </html>

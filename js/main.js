@@ -33,5 +33,14 @@ router.get('/models/main_7.js', (req, res) => {
     res.sendFile(filePath);
 });
 
+router.get('/models/quer_1.js', (req, res) => {
+    const filePath = path.join(__dirname, '../public/quer_1.js');
+    res.sendFile(filePath);
+});
+
+router.get('/models/quer_2.js', (req, res) => {
+    const filePath = path.join(__dirname, '../public/quer_2.js');
+    res.sendFile(filePath);
+});
 
 module.exports = router;
