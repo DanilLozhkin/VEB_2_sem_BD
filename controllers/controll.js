@@ -106,10 +106,10 @@ router2.put('/models/:id', KEY, async (req, res) => {
                 updateFields.type = type;
             }
             if (vertex) {
-                updateFields.value = { ...updateFields.value, vertex };
+                await updateOne({ _id: new ObjectId(id) }, { $set: {"value.vertex": vertex}}, trajectory_modell);
             }
             if (color) {
-                updateFields.value = { ...updateFields.value, color };
+                await updateOne({ _id: new ObjectId(id) }, { $set: {"value.color": color}}, trajectory_modell);
             }
             if (description) {
                 updateFields.description = description;
