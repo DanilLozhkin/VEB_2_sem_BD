@@ -17,7 +17,7 @@ const trajectory_api = 'API-key', trajectory_modell = 'modell';
 
 router2.use(express.json())
 //const { reqover }= require('../public/main_7');
-const { findToArray, findOne, insertOne, deleteOne ,deleteMany  } = require('../services/servis');
+const { findToArray, findOne, insertOne, deleteOne, deleteMany } = require('../services/servis');
 const { request } = require("http");
 router2.use(express.static('public'));
 
@@ -38,24 +38,29 @@ router2.get('/models', async (req, res) => {
 
 router2.get('/models/html', KEY, async (req, res) => {
 
-    // res.writeHead(200, { 'Content-Type': 'text/html' });
-    // var myReadStream = fs.createReadStream(__dirname + '/../public/index_2.html', 'utf8');
-    // myReadStream.pipe(res);
     const key = req.query.apiKey;
     let name = await findOne({ key: key }, trajectory_api);
     name = name.name;
+
+    let name_Model = "name";
+    let type = "BufferGeometry";
+    let vertex = "1,2,3";
+    let collor = "#0033ff";
+    let description = "что-то";
+    let data_creat = Date();
+    let data_update = data_creat;
+    
     const filePath = __dirname + '/../public/index_3.ejs';
     fs.readFile(filePath, 'utf8', (err, template) => {
-        const rendered = ejs.render(template, { name , key});
+        const rendered = ejs.render(template, {
+            name, name_Model, type, vertex,
+            collor, description, data_creat, data_update, key
+        });
         res.send(rendered);
     });
 });
 
 router2.get('/models/html/:id', KEY, async (req, res) => {
-
-    // res.writeHead(200, { 'Content-Type': 'text/html' });
-    // var myReadStream = fs.createReadStream(__dirname + '/../public/index_2.html', 'utf8');
-    // myReadStream.pipe(res);
     const key = req.query.apiKey;
     let name = await findOne({ key: key }, trajectory_api);
     name = name.name;
@@ -71,7 +76,7 @@ router2.get('/models/html/:id', KEY, async (req, res) => {
         let data_creat = data.data_creat;
         let data_update = data.data_update;
 
-        const filePath = __dirname + '/../public/index_2.ejs';
+        const filePath = __dirname + '/../public/index_3_2.ejs';
         fs.readFile(filePath, 'utf8', (err, template) => {
             const rendered = ejs.render(template, {
                 name, name_Model, type, vertex,
@@ -86,51 +91,16 @@ router2.get('/models/html/:id', KEY, async (req, res) => {
     }
 });
 
-router2.get('/models/:id', async (req, res) => {
-    const id = req.params.id;
-    if (ObjectId.isValid(id)) {
-        const data = await findOne({ _id: new ObjectId(id) }, trajectory_modell);
 
-        let name = data.name;
-        let name_Model = data.name_Model;
-        let type = data.type;
-        let vertex = data.value.vertex;
-        let collor = data.value.color;
-        let description = data.description;
-        let data_creat = data.data_creat;
-        let data_update = data.data_update;
+router2.put('/models/:id', ur, async (req, res) => {
 
-        const filePath = __dirname + '/../public/index_2.ejs';
-        fs.readFile(filePath, 'utf8', (err, template) => {
-            const rendered = ejs.render(template, {
-                name, name_Model, type, vertex,
-                collor, description, data_creat, data_update
-            });
-            res.send(rendered);
-        });
-        //res.sendFile('index_2.html');
-    } else {
-        res.status(404).send("404 ошибка");
+    //const { name, name_Model, type, vertex, color, description, key ,data_creat} = req.body;
 
-    }
+    //let data_update = Date();
+
+    //await insertOne({ name, name_Model, type, value: { vertex, color }, description, data_creat, data_update, key }, trajectory_modell);
+    res.send('Data saved successfully');
 });
-
-
-// router2.post('/models', KEY, async (req, res) => {
-//     //const { name_Model, type, value, description } = req.body;
-//     const apiKey = req.query.apiKey;
-//     let name = await findOne({ key: apiKey }, trajectory_api);
-//     name = name.name;
-//     let data_creat = Date();
-//     let data_update = data_creat;
-//     insertOne({ name, name_Model, type, value, description, data_creat, data_update }, trajectory_modell);
-
-//     // res.writeHead(200, {'Content-Type': 'text/html'});
-//     // var myReadStream = fs.createReadStream(__dirname + '/../public/index_2.html', 'utf8');
-//     // myReadStream.pipe(res);
-
-//     //res.end("fin");
-// });
 
 router2.post('/models', ur, async (req, res) => {
 
@@ -138,7 +108,7 @@ router2.post('/models', ur, async (req, res) => {
 
     let data_creat = Date();
     let data_update = data_creat;
-    console.log(name_Model);
+
     await insertOne({ name, name_Model, type, value: { vertex, color }, description, data_creat, data_update, key }, trajectory_modell);
     res.send('Data saved successfully');
 });
@@ -146,7 +116,7 @@ router2.post('/models', ur, async (req, res) => {
 router2.post('/api-keys', (req, res) => {
     const { name } = req.body;
     const key = uuid().slice(0, 8);;
-    insertOne({key ,name}, trajectory_api);
+    insertOne({ key, name }, trajectory_api);
     res.send(`API key for ${name} is ${key} `);
 });
 
@@ -155,7 +125,7 @@ router2.delete("/", KEY, async (req, res) => {
     const apiKey = req.query.apiKey;
     let name = await findOne({ key: apiKey }, trajectory_api);
     name = name.name;
-  
+
     deleteMany({ name: name }, trajectory_modell);
     deleteOne({ key: apiKey }, trajectory_api);
 

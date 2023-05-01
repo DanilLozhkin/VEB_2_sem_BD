@@ -29,10 +29,10 @@
             <label><input type="text" name="name" value="<%= name %>" id="p1" readonly></label>
 
             <p>name_Model:</p>
-            <label><input type="text" name="name_Model" value="name" id="p2"></label>
+            <label><input type="text" name="name_Model" value="<%= name_Model %>" id="p2"></label>
 
             <p>type:</p>
-            <select for="type" name="type" id="p3">
+            <select for="type" name="type" value="<%= type %>" id="p3">
                 <option value="BoxGeometry">BoxGeometry</option>
                 <option value="PlaneGeometry">PlaneGeometry</option>
                 <option value="BufferGeometry">BufferGeometry</option>
@@ -42,15 +42,20 @@
             </select>
 
             <P>value, vertex:</P>
-            <label><input type="text" name="vertex" value="23, 324, 543, 4634 " id="p4"></label>
+            <label><input type="text" name="vertex" value="<%= vertex %>" id="p4"></label>
 
             <P>value, color:</P>
-            <label><input type="color" name="color" value="#a55151" id="p5"></label>
+            <label><input type="color" name="color" value="<%= collor %>" id="p5"></label>
 
             <p>description:</p>
-            <label><input type="text" name="description" value="sdfsdfdsdfsddfe" id="p6"></label>
+            <label><input type="text" name="description" value="<%= description %>" id="p6"></label>
 
-            <input type="hidden" name="key" value="<%= key %>">
+            <p class="p11">data_creat: <%= data_creat %></p>
+
+            <p class="p11">data_update: <%= data_update %></p>
+
+            <input type="hidden" name="key" value="<%= key %>" readonly>
+
             <div>
                 <button class="butt" id="but">отобразить</button>
                 <button type="submit" id="submit">отправить</button>
