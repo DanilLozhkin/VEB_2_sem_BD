@@ -3,6 +3,10 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const { connectToDB } = require('../configs/BD');
+//bodyParser = require("body-parser");
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./public/doc.yaml');
+const swaggerUi = require("swagger-ui-express");
 
 const app = express();
 const router = require('./main');
@@ -46,8 +50,13 @@ app.use('/', router2);
 const hostname = '127.0.0.1';
 const PORT = 3000;
 
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 connectToDB((err) => {
     if (!err) {
+
         app.listen(PORT, hostname, () => {
             console.log("OK server");
         });

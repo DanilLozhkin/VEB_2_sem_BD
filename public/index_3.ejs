@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <form id='form' method="post" action="../models">
+    <form id='form' method="post" action="../models?apiKey=<%= key %>">
 
         <fieldset>
             <legend>Создание модели</legend>
@@ -53,8 +53,6 @@
             <p class="p11">data_creat: <%= data_creat %></p>
 
             <p class="p11">data_update: <%= data_update %></p>
-
-            <input type="hidden" name="key" value="<%= key %>" readonly>
 
             <div>
                 <button class="butt" id="but">отобразить</button>

@@ -25,7 +25,7 @@ const KEY = async (req, res, next) => {
 
     if (!(await findOne({ key: apiKey }, trajectory_api))) {
         const error = new Error('Ошибка авторизации');
-        error.status = 401;
+        error.status = 400;
         next(error);
     } else {
         next();
@@ -97,7 +97,7 @@ router2.get('/models/:id', async (req, res, next) => {
                 res.send(rendered);
             });
         } else {
-            res.status(404).send("id нет");
+            res.status(400).send("id нет");
         }
     } catch (error) {
         next(error);
@@ -133,23 +133,28 @@ router2.put('/models/:id', KEY, async (req, res, next) => {
                 await updateOne({ _id: new ObjectId(id) }, { $set: updateFields }, trajectory_modell);
                 res.send('fin обновилось БД');
             } else {
-                return res.status(401).json({ message: '400 ошибка аворизации' });
+                return res.status(400).json({ message: '400 ошибка аворизации' });
             }
         } else {
-            res.status(404).send("id нет");
+            res.status(400).send("id нет");
         }
     } catch (error) {
         next(new Error('Ошибка при обновлении модели'));
     }
 });
 
-router2.post('/models', ur, async (req, res, next) => {
+router2.post('/models', KEY, ur, async (req, res, next) => {
     try {
-        const { name, name_Model, type, vertex, color, description, key } = req.body;
+        const key = req.query.apiKey;
+        const { name_Model, type, vertex, color, description } = req.body;
+        let name = await findOne({ key: key }, trajectory_api);
+
+        name = name.name;
         let data_creat = Date();
         let data_update = data_creat;
         await insertOne({ name, name_Model, type, value: { vertex, color }, description, data_creat, data_update, key }, trajectory_modell);
         res.send('бд сохранилось');
+
     } catch (error) {
         next(new Error('Ошибка при сохранении модели'));
     }
@@ -160,7 +165,7 @@ router2.post('/api-keys', (req, res, next) => {
         const { name } = req.body;
         const key = uuid().slice(0, 8);;
         insertOne({ key, name }, trajectory_api);
-        res.send(`API key for ${name} is ${key} `);
+        res.status(200).send(`API key for ${name} is ${key} `);
     } catch (error) {
         next(new Error('Ошибка при создании API-ключа'));
     }
@@ -189,10 +194,10 @@ router2.delete("/models/:id", KEY, async (req, res, next) => {
                 await deleteOne({ _id: new ObjectId(id) }, trajectory_modell);
                 res.end("fin");
             } else {
-                return res.status(401).json({ message: '400 ошибка аворизации' });
+                return res.status(400).json({ message: '400 ошибка аворизации' });
             }
         } else {
-            res.status(404).send("id нет");
+            res.status(400).send("id нет");
         }
     } catch (error) {
         next(new Error('Ошибка при удалении модели'));
