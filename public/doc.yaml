@@ -23,7 +23,13 @@ paths:
                     description: Сообщение с информацией о сервере
                 example:
                   message: Сервер работает
-
+        'default':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
+  
     delete:
       summary: Удаление API-ключа и всех связанных с ним моделей
       tags:
@@ -33,11 +39,6 @@ paths:
           in: query
           description: Ключ для удаления
           required: true
-          schema:
-            type: string
-      headers:
-        KEY:
-          description: Ключ авторизации
           schema:
             type: string
       responses:
@@ -74,12 +75,12 @@ paths:
             text/html:
               schema:
                 type: string
-        '400':
-          description: Модель не найдена
+        'default':
+          description: ошибка
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/Errors"
 
     put:
       summary: Обновление модели по id
@@ -138,11 +139,6 @@ paths:
           required: true
           schema:
             type: string
-      headers:
-        KEY:
-          description: Ключ авторизации
-          schema:
-            type: string
       responses:
         '200':
           description: Успешный запрос
@@ -198,6 +194,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Models"
+        'default':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
     post:
       summary: Создание новой модели
       description: Создает новую модель с заданными параметрами и сохраняет ее в базе данных.
@@ -230,7 +232,95 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Errors"
+                
+  /models/html:
+    get:
+      summary: Получение HTML-шаблона
+      description: Этот маршрут используется для получения HTML-шаблона
+      tags:
+        - Models
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: apiKey
+          required: true
+          description: API-ключ для доступа к ресурсу
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            text/html:
+              schema:
+                type: string
+        'default':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
 
+  /models/normalize.css:
+    get:
+      summary: Отправка файла normalize.css
+      tags:
+        - Resources
+      responses:
+        '200':
+          description: Файл успешно отправлен
+        'default':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
+
+  /models/style_2.css:
+    get:
+      summary: Отправка файла style_2.css
+      tags:
+        - Resources
+      responses:
+        '200':
+          description: Файл успешно отправлен
+        'default':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
+
+  /models/three.js:
+    get:
+      summary: Отправка файла three.js
+      tags:
+        - Resources
+      responses:
+        '200':
+          description: Файл успешно отправлен
+        'default':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
+                
+  /models/main_7.js:
+    get:
+      summary: Отправка файла main_7.js
+      tags:
+        - Resources
+      responses:
+        '200':
+          description: Файл успешно отправлен
+        'default':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
 
           
 components:
@@ -304,8 +394,6 @@ components:
           $ref: "#/components/schemas/Model/properties/value/properties/color"
         description:
           $ref: "#/components/schemas/Model/properties/description"
-        key:
-          $ref: "#/components/schemas/Model/properties/key"
 
     Models:
       type: array
