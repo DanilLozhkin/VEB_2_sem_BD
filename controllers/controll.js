@@ -27,7 +27,7 @@ const KEY = async (req, res, next) => {
 
     if (!(await findOne({ key: apiKey }, trajectory_api))) {
         const error = new Error('Ошибка авторизации');
-        error.status = 400;
+        error.status = 401;
         next(error);
     } else {
         next();
@@ -99,7 +99,7 @@ router2.get('/models/:id', async (req, res, next) => {
                 res.send(rendered);
             });
         } else {
-            res.status(400).send("id нет");
+            res.status(404).send("id нет");
         }
     } catch (error) {
         next(error);
@@ -135,10 +135,10 @@ router2.put('/models/:id', KEY, async (req, res, next) => {
                 await updateOne({ _id: new ObjectId(id) }, { $set: updateFields }, trajectory_modell);
                 res.send('fin обновилось БД');
             } else {
-                return res.status(400).json({ message: '400 ошибка аворизации' });
+                return res.status(401).json({ message: '401 ошибка аворизации' });
             }
         } else {
-            res.status(400).send("id нет");
+            res.status(404).send("id нет");
         }
     } catch (error) {
         next(new Error('Ошибка при обновлении модели'));
@@ -196,10 +196,10 @@ router2.delete("/models/:id", KEY, async (req, res, next) => {
                 await deleteOne({ _id: new ObjectId(id) }, trajectory_modell);
                 res.end("fin");
             } else {
-                return res.status(400).json({ message: '400 ошибка аворизации' });
+                return res.status(401).json({ message: '401 ошибка аворизации' });
             }
         } else {
-            res.status(400).send("id нет");
+            res.status(404).send("id нет");
         }
     } catch (error) {
         next(new Error('Ошибка при удалении модели'));
