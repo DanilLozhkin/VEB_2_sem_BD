@@ -17,7 +17,9 @@ const trajectory_api = 'API-key', trajectory_modell = 'modell';
 
 router2.use(express.json())
 //const { reqover }= require('../public/main_7');
-const { findToArray, findOne, insertOne, deleteOne, deleteMany, updateOne } = require('../services/servis');
+const { findToArray, findOne, insertOne, deleteOne, updateOne } = require('../services/servis');
+//const { findToArray, findOne, insertOne, deleteOne, deleteMany, updateOne } = require('../services/servis');
+
 router2.use(express.static('public'));
 
 const KEY = async (req, res, next) => {
@@ -176,7 +178,7 @@ router2.delete("/", KEY, async (req, res, next) => {
         const apiKey = req.query.apiKey;
         let name = await findOne({ key: apiKey }, trajectory_api);
         name = name.name;
-        deleteMany({ name: name }, trajectory_modell);
+        //deleteMany({ name: name }, trajectory_modell);
         deleteOne({ key: apiKey }, trajectory_api);
         res.end("fin");
     } catch (error) {

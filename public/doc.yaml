@@ -31,7 +31,7 @@ paths:
                 $ref: "#/components/schemas/Errors"
   
     delete:
-      summary: Удаление API-ключа и всех связанных с ним моделей
+      summary: Удаление API-ключа 
       tags:
         - Users
       parameters:

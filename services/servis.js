@@ -29,11 +29,11 @@ module.exports = {
         return char; 
     },
 
-    deleteMany: (query, trajectory) => {
-        let db = getDb(); 
-        let char = db.collection(trajectory).deleteMany(query); 
-        return char; 
-    },
+    // deleteMany: (query, trajectory) => {
+    //     let db = getDb(); 
+    //     let char = db.collection(trajectory).deleteMany(query); 
+    //     return char; 
+    // },
 
     updateOne:(filter,update, trajectory ) => {
         let db = getDb(); 
