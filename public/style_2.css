@@ -1,12 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 
 :root {
     font-size: 62.5%;
     letter-spacing: 0.2px;
     font-family: 'Montserrat', sans-serif;
-    --primary-color: #000000;
-    --quinary-color: #ff8800;
+    --primary-color: #FAE3B4;
+    --quinary-color: #000000;
     box-sizing: border-box;
+}
+
+main {
+    max-width: 38rem;
+    padding: 2rem;
+    margin: auto;
 }
 
 *,
@@ -16,7 +22,7 @@
 }
 
 fieldset {
-    border-color: var(--quinary-color);
+    border-color: var(--primary-color);
     border-radius: 10px;
     border-width: 2px;
     width: 427px;
@@ -34,12 +40,19 @@ canvas{
     border-radius: 8px;
 }
 
-.butt{
+button{
     margin-top: 5px;
     margin-bottom: 5px;
-    background-color: #ff8800;
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
     border-radius: 4px;
     width: 120px;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+    color:var(--quinary-color);
+    transform: scale(1.06);
 }
 
 .p11{
@@ -49,4 +62,60 @@ canvas{
 div{
     display: flex;
     flex-direction: column;
+}
+
+
+
+table {
+	width: 90%;
+    margin-left: 10px;
+	margin-bottom: 20px;
+	border: 5px solid #fff;
+	border-top: 5px solid #fff;
+	border-bottom: 3px solid #fff;
+	border-collapse: collapse; 
+	outline: 3px solid var(--primary-color);;
+	font-size: 15px;
+	background: #fff!important;
+}
+table th {
+	font-weight: bold;
+	padding: 7px;
+	background:  var(--primary-color);;
+	border: none;
+	text-align: left;
+	font-size: 15px;
+	border-top: 3px solid #fff;
+	border-bottom: 3px solid  var(--primary-color);;
+}
+table td {
+	padding: 7px;
+	border: none;
+	border-top: 3px solid #fff;
+	border-bottom: 3px solid #fff;
+	font-size: 15px;
+}
+table tbody tr:nth-child(even){
+	background: #f8f8f8!important;
+}
+
+.TD_BUTT{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+    transform: scale(0.96);
+}
+
+.TD_BUTT:hover{
+    background-color: var(--primary-color);
+    color:var(--quinary-color);
+    transform: scale(0.92);
+    border-radius: 9px;
+    
+}
+
+a{
+    width: 100%;
 }

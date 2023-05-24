@@ -41,6 +41,23 @@ router2.get('/models', async (req, res, next) => {
     }
 });
 
+router2.get('/html', async (req, res, next) => {
+    try {
+
+        res.writeHead(200, {'Content-Type': 'text/html'}); 
+        var myReadStream = fs.createReadStream(__dirname + '/../public/index_2.html', 'utf8'); 
+    
+        // Создаем поток данных из ответа сервера и выводим каждый полученный кусок данных в консоль Postman
+        let stream = myReadStream.pipe(res);
+        stream.on('data', function (chunk) {
+            console.log(chunk.toString());
+        });
+    
+    } catch (error) {
+        next(error);
+    }
+});
+
 router2.get('/models/html', KEY, async (req, res, next) => {
     try {
         const key = req.query.apiKey;
