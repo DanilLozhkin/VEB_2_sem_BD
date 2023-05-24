@@ -23,15 +23,15 @@ paths:
                     description: Сообщение с информацией о сервере
                 example:
                   message: Сервер работает
-        'default':
+        '500':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_500"
   
     delete:
-      summary: Удаление API-ключа и всех связанных с ним моделей
+      summary: Удаление API-ключа 
       tags:
         - Users
       parameters:
@@ -49,12 +49,18 @@ paths:
               schema:
                 type: string
                 example: fin
-        'default':
+        '401':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_401"
+        '500':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors_500"
 
   /models/{id}:
     get:
@@ -75,12 +81,18 @@ paths:
             text/html:
               schema:
                 type: string
-        'default':
+        '404':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_404"
+        '500':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors_500"
 
     put:
       summary: Обновление модели по id
@@ -115,12 +127,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Model_2"
-        'default':
+        '404':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_404"
+        '401':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors_401"
+        '500':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors_500"
+
  
     delete:
       summary: Удаление модели по ее id
@@ -147,12 +172,24 @@ paths:
               schema:
                 type: string
                 example: fin
-        'default':
+        '404':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_404"
+        '401':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors_401"
+        '500':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors_500"
  
 
   /api-keys:
@@ -174,12 +211,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/user"
-        'default':
+        '500':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_500"
+
 
   /models:
     get:
@@ -194,12 +232,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Models"
-        'default':
+        '401':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_401"
+
+        '500':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors_500"
     post:
       summary: Создание новой модели
       description: Создает новую модель с заданными параметрами и сохраняет ее в базе данных.
@@ -226,12 +271,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Model_2"
-        'default':
+        '401':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_401"
+        '500':
+          description: ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors_500"
                 
   /models/html:
     get:
@@ -255,12 +306,12 @@ paths:
             text/html:
               schema:
                 type: string
-        'default':
+        '500':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_500"
 
   /models/normalize.css:
     get:
@@ -270,12 +321,12 @@ paths:
       responses:
         '200':
           description: Файл успешно отправлен
-        'default':
+        '500':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_500"
 
   /models/style_2.css:
     get:
@@ -285,14 +336,15 @@ paths:
       responses:
         '200':
           description: Файл успешно отправлен
-        'default':
+        '500':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_500"
+        
 
-  /models/three.js:
+  /models/three.js: 
     get:
       summary: Отправка файла three.js
       tags:
@@ -300,12 +352,12 @@ paths:
       responses:
         '200':
           description: Файл успешно отправлен
-        'default':
+        '500':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
+                $ref: "#/components/schemas/Errors_500"
                 
   /models/main_7.js:
     get:
@@ -315,13 +367,12 @@ paths:
       responses:
         '200':
           description: Файл успешно отправлен
-        'default':
+        '500':
           description: ошибка
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Errors"
-
+                $ref: "#/components/schemas/Errors_500"
           
 components:
   securitySchemes:
@@ -406,15 +457,42 @@ components:
         name:
           type: string
           example: deniel
-    
-    Errors:
+
+    Errors_401:
       type: object
       required:
         - code
         - message
       properties:
-        name:
-          code: 
-            type: integer
-          message: 
-            type: string
+        code: 
+          type: integer
+          example: 401
+        message: 
+          type: string
+          example: ошибка авторизации
+    
+    Errors_404:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code: 
+          type: integer
+          example: 404
+        message: 
+          type: string
+          example: не верный id
+      
+    Errors_500:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code: 
+          type: integer
+          example: 500
+        message: 
+          type: string
+          example: что-то сломалось
