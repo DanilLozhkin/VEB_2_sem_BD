@@ -21,6 +21,7 @@ fetch('/models')
 
 function Models(count) {
     let num = 0;
+    let key_1 = document.getElementById("key")
 
     let table = document.createElement('table');
     let thead = document.createElement('thead');
@@ -45,7 +46,6 @@ function Models(count) {
     row_1.appendChild(heading_1);
     row_1.appendChild(heading_2);
     row_1.appendChild(heading_3);
-    row_1.appendChild(heading_4);
     thead.appendChild(row_1);
 
     while (count.length > num) {
@@ -67,18 +67,11 @@ function Models(count) {
         let row_2_data_3 = document.createElement('td');
         row_2_data_3.innerHTML = "удалить";
         row_2_data_3.id = id_; row_2_data_3.classList.add("TD_BUTT");
-
-        id_ += 0.1;
-        let row_2_data_4 = document.createElement('td');
-        row_2_data_4.innerHTML = "обновить";
-        row_2_data_4.id = id_; row_2_data_4.classList.add("TD_BUTT");
-        id_ -= 0.3;
-
+        id_ -= 0.2;
 
         row_2.appendChild(row_2_data_1);
         row_2.appendChild(row_2_data_2);
         row_2.appendChild(row_2_data_3);
-        row_2.appendChild(row_2_data_4);
         tbody.appendChild(row_2);
 
         num += 1;
@@ -87,18 +80,24 @@ function Models(count) {
     document.body.addEventListener('click', function (e) {
         if (Number(e.target.id)) {
             if ((e.target.id).toString().split('.')[1].charAt(0) == 1) {
-                
-                let dad = parseInt((e.target.id))-1;
-                window.location.href = `/models/${count[dad]._id}`;
+                console.log(e.target.id);
+                let dad = parseInt((e.target.id));
+                window.location.href = `/models/${count[dad - 1]._id}`;
 
             } else if ((e.target.id).toString().split('.')[1].charAt(0) == 2) {
                 console.log(e.target);
-
-            } else if ((e.target.id).toString().split('.')[1].charAt(0) == 3) {
-                console.log(e.target);
-
+                let dad = parseInt((e.target.id));
+                fetch(`/models/${count[dad - 1]._id}/?apiKey=${key_1.value}`, {
+                    method: 'DELETE',
+                })
+      
             }
         }
     });
 
 }
+document.body.addEventListener('click', function (e) {
+    if (e.target.id == "but") {
+        window.location.href = `/html`;
+    }
+});
