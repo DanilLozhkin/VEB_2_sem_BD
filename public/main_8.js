@@ -1,3 +1,4 @@
+let key_1 = document.getElementById("key")
 
 fetch('/models')
     .then(response => {
@@ -21,7 +22,6 @@ fetch('/models')
 
 function Models(count) {
     let num = 0;
-    let key_1 = document.getElementById("key")
 
     let table = document.createElement('table');
     let thead = document.createElement('thead');
@@ -60,8 +60,6 @@ function Models(count) {
         row_2_data_2.innerHTML = "просмотр";
         row_2_data_2.id = id_; row_2_data_2.classList.add("TD_BUTT");
 
-        // let row_2_a_2 = document.createElement('a');
-        // row_2_a_2.setAttribute('href', `/models/${count[num]._id}`);
 
         id_ += 0.1;
         let row_2_data_3 = document.createElement('td');
@@ -79,18 +77,21 @@ function Models(count) {
 
     document.body.addEventListener('click', function (e) {
         if (Number(e.target.id)) {
-            if ((e.target.id).toString().split('.')[1].charAt(0) == 1) {
-                console.log(e.target.id);
+            let num = parseFloat(e.target.id); 
+            let roundedResult = num.toFixed(1); 
+            let roundedResult_2 = (roundedResult.toString()).split('.')[1].charAt(0);
+            if (roundedResult_2 == 1) {
+
                 let dad = parseInt((e.target.id));
                 window.location.href = `/models/${count[dad - 1]._id}`;
 
-            } else if ((e.target.id).toString().split('.')[1].charAt(0) == 2) {
-                console.log(e.target);
+            } else if (roundedResult_2 == 2) {
+
                 let dad = parseInt((e.target.id));
                 fetch(`/models/${count[dad - 1]._id}/?apiKey=${key_1.value}`, {
                     method: 'DELETE',
                 })
-      
+
             }
         }
     });
@@ -99,5 +100,8 @@ function Models(count) {
 document.body.addEventListener('click', function (e) {
     if (e.target.id == "but") {
         window.location.href = `/html`;
+    }
+    if (e.target.id == "create") {
+        window.location.href = `/models/html?apiKey=${key_1.value}`;
     }
 });
